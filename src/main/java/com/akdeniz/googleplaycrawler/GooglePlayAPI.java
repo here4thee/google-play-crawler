@@ -180,7 +180,7 @@ public class GooglePlayAPI {
 	HttpEntity c2dmResponseEntity = executePost(URL_LOGIN, new String[][] { { "Email", this.getEmail() },
 		{ "Passwd", this.password }, { "service", "ac2dm" }, { "accountType", ACCOUNT_TYPE_HOSTED_OR_GOOGLE },
 		{ "has_permission", "1" }, { "source", "android" }, { "app", "com.google.android.gsf" },
-		{ "device_country", "us" }, { "device_country", "us" }, { "lang", "en" }, { "sdk_version", "16" }, { "client_sig", "38918a453d07199354f8b19af05ec6562ced5788" }, }, null);
+		{ "device_country", "us" }, { "device_country", "us" }, { "lang", "en" }, { "sdk_version", "21" }, { "client_sig", "38918a453d07199354f8b19af05ec6562ced5788" }, }, null);
 
 	Map<String, String> c2dmAuth = Utils.parseResponse(new String(Utils.readAll(c2dmResponseEntity.getContent())));
 	return c2dmAuth.get("Auth");
@@ -213,7 +213,7 @@ public class GooglePlayAPI {
 	HttpEntity responseEntity = executePost(URL_LOGIN, new String[][] { { "Email", this.getEmail() }, { "Passwd", this.password },
 		{ "service", "androidmarket" }, { "accountType", ACCOUNT_TYPE_HOSTED_OR_GOOGLE }, { "has_permission", "1" },
 		{ "source", "android" }, { "androidId", this.getAndroidID() }, { "app", "com.android.vending" },
-		{ "device_country", "en" }, { "lang", "en" }, { "sdk_version", "16" }, { "client_sig", "38918a453d07199354f8b19af05ec6562ced5788" }, }, null);
+		{ "device_country", "en" }, { "lang", "en" }, { "sdk_version", "21" }, { "client_sig", "38918a453d07199354f8b19af05ec6562ced5788" }, }, null);
 
 	Map<String, String> response = Utils.parseResponse(new String(Utils.readAll(responseEntity.getContent())));
 	if (response.containsKey("Auth")) {
@@ -328,7 +328,7 @@ public class GooglePlayAPI {
     private AndroidCheckinResponse postCheckin(byte[] request) throws IOException {
 
 	HttpEntity httpEntity = executePost(CHECKIN_URL, new ByteArrayEntity(request), new String[][] {
-		{ "User-Agent", "Android-Checkin/2.0 (generic JRO03E); gzip" }, { "Host", "android.clients.google.com" },
+		{ "User-Agent", "Android-Checkin/2.0 (shamu LRX22C); gzip" }, { "Host", "android.clients.google.com" },
 		{ "Content-Type", "application/x-protobuffer" } });
 	return AndroidCheckinResponse.parseFrom(httpEntity.getContent());
     }
@@ -351,7 +351,7 @@ public class GooglePlayAPI {
     public InputStream executeDownload(String url, String cookie) throws IOException {
 
 	String[][] headerParams = new String[][] { { "Cookie", cookie },
-		{ "User-Agent", "AndroidDownloadManager/4.1.1 (Linux; U; Android 4.1.1; Nexus S Build/JRO03E)" }, };
+		{ "User-Agent", "AndroidDownloadManager/5.0.1 (Linux; U; Android 5.0.1; Nexus 6 Build/LRX22C)" }, };
 
 	HttpEntity httpEntity = executeGet(url, null, headerParams);
 	return httpEntity.getContent();
@@ -541,7 +541,7 @@ public class GooglePlayAPI {
 		{ "X-DFE-Device-Id", this.getAndroidID() },
 		{ "X-DFE-Client-Id", "am-android-google" },
 		{ "User-Agent",
-			"Android-Finsky/3.10.14 (api=3,versionCode=8016014,sdk=15,device=GT-I9300,hardware=aries,product=GT-I9300)" },
+			"Android-Finsky/3.10.14 (api=3,versionCode=8016014,sdk=21,device=Nexus6,hardware=shamu,product=Nexus6)" },
 		{ "X-DFE-SmallestScreenWidthDp", "320" }, { "X-DFE-Filter-Level", "3" },
 		{ "Host", "android.clients.google.com" },
 		{ "Content-Type", (contentType != null) ? contentType : "application/x-www-form-urlencoded; charset=UTF-8" } };
